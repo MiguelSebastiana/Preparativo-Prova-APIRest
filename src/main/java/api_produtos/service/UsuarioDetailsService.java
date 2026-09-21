@@ -1,8 +1,5 @@
 package api_produtos.service;
-
-import api_produtos.entity.Usuario;
 import api_produtos.repository.UsuarioRepository;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,12 +16,7 @@ public class UsuarioDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario u = repository.findByEmail(email)
+        return repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
-
-        return User.withUsername(u.getEmail())
-                .password(u.getSenha())
-                .roles(u.getRole().name())
-                .build();
     }
 }

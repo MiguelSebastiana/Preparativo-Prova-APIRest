@@ -1,0 +1,22 @@
+### GET público
+GET http://localhost:8181/api/v1/produtos
+
+### POST sem login (espera 401)
+POST http://localhost:8181/api/v1/produtos
+Content-Type: application/json
+
+{"nome":"Teste","preco":10}
+
+### POST como USER (espera 403)
+POST http://localhost:8181/api/v1/produtos
+Content-Type: application/json
+Authorization: Basic dXNlckBlbWFpbC5jb206MTIzNDU2
+
+{"nome":"Teste","preco":10}
+
+### POST como ADMIN (espera 201)
+POST http://localhost:8181/api/v1/produtos
+Content-Type: application/json
+Authorization: Basic YWRtaW5AZW1haWwuY29tOjEyMzQ1Ng==
+
+{"nome":"Teste","preco":10}
