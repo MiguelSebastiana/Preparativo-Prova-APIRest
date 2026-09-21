@@ -51,7 +51,7 @@ public class ProdutoController {
             responseCode = "200",
             description = "Produtos retornados com sucesso"
     )
-    @GetMapping
+    @GetMapping("/publico/listar")
     public ResponseEntity<List<ProdutoResponse>> listar(){
         return ResponseEntity.ok(service.listar());
     }
@@ -77,7 +77,7 @@ public class ProdutoController {
                     content = @Content(schema = @Schema(implementation = ErroResponse.class))
             )
     })
-    @GetMapping("/{id}")
+    @GetMapping("/publico/{id}")
     public ResponseEntity<ProdutoResponse> buscarPorId(
             @Parameter(description = "identificar únido do produto", example = "1")
             @PathVariable Long id
@@ -107,7 +107,7 @@ public class ProdutoController {
                     content = @Content(schema = @Schema(implementation = ErroResponse.class))
             )
     })
-    @GetMapping(params = "nome")
+    @GetMapping("/publico/nome/{nome}")
     public ResponseEntity<List<ProdutoResponse>> buscarPorNome(
             @Parameter(description = "Termo ou palavra-chave contida no nome do produto", example = "Mouse")
             @RequestParam String nome
